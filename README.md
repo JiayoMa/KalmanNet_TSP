@@ -96,7 +96,7 @@ Required packages:
 ### Quick Demo (Synthetic Data)
 
 ```bash
-python main_VIO.py --mode demo --use_cuda False --pretrained False
+python main_VIO.py --mode demo --no_cuda --no_pretrained
 ```
 
 ### Training

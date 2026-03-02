@@ -18,12 +18,14 @@ class SpatiotemporalEncoder(nn.Module):
         else:
             raise ValueError(f"Unsupported backbone: {backbone}")
 
+        if pretrained:
+            orig_conv1_weight = base.conv1.weight.clone()
+
         base.conv1 = nn.Conv2d(6, 64, kernel_size=7, stride=2, padding=3, bias=False)
         if pretrained:
             with torch.no_grad():
-                orig_weight = models.resnet18(weights=models.ResNet18_Weights.DEFAULT).conv1.weight if backbone == "resnet18" else models.resnet50(weights=models.ResNet50_Weights.DEFAULT).conv1.weight
-                base.conv1.weight[:, :3, :, :] = orig_weight
-                base.conv1.weight[:, 3:, :, :] = orig_weight
+                base.conv1.weight[:, :3, :, :] = orig_conv1_weight
+                base.conv1.weight[:, 3:, :, :] = orig_conv1_weight
 
         self.backbone = nn.Sequential(*list(base.children())[:-1])
         self.projection = nn.Sequential(

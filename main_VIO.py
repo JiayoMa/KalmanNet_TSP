@@ -16,11 +16,13 @@ def parse_args():
     parser.add_argument('--latent_dim', type=int, default=128)
     parser.add_argument('--backbone', type=str, default='resnet18',
                         choices=['resnet18', 'resnet50'])
-    parser.add_argument('--pretrained', type=bool, default=True)
+    parser.add_argument('--pretrained', action='store_true', default=True)
+    parser.add_argument('--no_pretrained', dest='pretrained', action='store_false')
     parser.add_argument('--state_dim', type=int, default=9)
     parser.add_argument('--hidden_dim', type=int, default=256)
 
-    parser.add_argument('--use_cuda', type=bool, default=True)
+    parser.add_argument('--use_cuda', action='store_true', default=True)
+    parser.add_argument('--no_cuda', dest='use_cuda', action='store_false')
     parser.add_argument('--n_steps', type=int, default=500)
     parser.add_argument('--n_batch', type=int, default=4)
     parser.add_argument('--lr', type=float, default=1e-4)

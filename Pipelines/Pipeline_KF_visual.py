@@ -390,9 +390,9 @@ class Pipeline_KF_visual:
 
         results = {
             'geo_mean': geo_errors.mean().item(),
-            'geo_std': geo_errors.std(unbiased=False).item() if len(geo_errors) > 1 else 0.0,
+            'geo_std': geo_errors.std().item() if len(geo_errors) > 1 else 0.0,
             'vel_mean': vel_errors.mean().item(),
-            'vel_std': vel_errors.std(unbiased=False).item() if len(vel_errors) > 1 else 0.0,
+            'vel_std': vel_errors.std().item() if len(vel_errors) > 1 else 0.0,
             'time': elapsed,
         }
 
