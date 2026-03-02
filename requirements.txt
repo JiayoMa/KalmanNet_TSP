@@ -3,4 +3,7 @@ numpy==1.20.1
 pyParticleEst==1.1.4
 scipy==1.8.1
 seaborn==0.11.1
-torch==1.10.1
+torch>=1.10.1
+torchvision>=0.11.2
+pypose>=0.7.0
+timm>=0.9.0
